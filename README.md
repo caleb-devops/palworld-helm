@@ -1,6 +1,6 @@
 # Palworld Helm Chart
 
-This chart installs a Palworld deployment on a [Kubernetes](http://kubernetes.io/) cluster using the [Helm](https://helm.sh/) package manager.
+This chart installs [docker-palworld-dedicated-server](https://github.com/jammsen/docker-palworld-dedicated-server) on a [Kubernetes](http://kubernetes.io/) cluster using the [Helm](https://helm.sh/) package manager.
 
 ## Install Chart
 
