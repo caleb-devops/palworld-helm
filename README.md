@@ -46,7 +46,7 @@ Data persistance is enabled by default using dynamic volume provisioning.
 
 **Set the configured storageClass [reclaim policy](https://kubernetes.io/docs/concepts/storage/storage-classes/#reclaim-policy) to `Retain` to prevent automatic deletion of the PV if the Chart is uninstalled.**
 
-### Game config
+### Palworld Config
 
 To configure the server, add the [environment variables](https://github.com/jammsen/docker-palworld-dedicated-server#environment-variables) to `config`:
 
@@ -58,7 +58,6 @@ config:
     MAX_PLAYERS: 16
     MULTITHREAD_ENABLED: true
     COMMUNITY_SERVER: false
-    RCON_ENABLED: true
     SERVER_NAME: "serverNameHere"
     SERVER_DESCRIPTION: ""
     BACKUP_ENABLED: true
