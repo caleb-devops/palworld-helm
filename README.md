@@ -48,7 +48,7 @@ Data persistance is enabled by default using dynamic volume provisioning.
 
 ### Palworld Config
 
-To configure the server, add the [environment variables](https://github.com/jammsen/docker-palworld-dedicated-server#environment-variables) to `config`:
+To configure the server, add the [environment variables](https://github.com/jammsen/docker-palworld-dedicated-server/blob/master/README_ENV.md#environment-variables) to `config`:
 
 ```yaml
 config:

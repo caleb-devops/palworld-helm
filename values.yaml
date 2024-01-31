@@ -80,7 +80,7 @@ tolerations: []
 affinity: {}
 
 ## Environment variables used to configure Palworld
-## ref: https://github.com/jammsen/docker-palworld-dedicated-server#environment-variables
+## ref: https://github.com/jammsen/docker-palworld-dedicated-server/blob/master/README_ENV.md#environment-variables
 ## 
 config:
   ## ConfigMap environment variables
