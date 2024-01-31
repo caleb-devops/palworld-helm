@@ -59,7 +59,8 @@ Note: Port-Forwarding may be required if the LoadBalancer does not use a Public 
 
 Data persistance is enabled by default using dynamic volume provisioning.
 
-**Set the configured storageClass [reclaim policy](https://kubernetes.io/docs/concepts/storage/storage-classes/#reclaim-policy) to `Retain` to prevent automatic deletion of the PV if the Chart is uninstalled.**
+> [!WARNING]
+> Set the configured storageClass [reclaim policy](https://kubernetes.io/docs/concepts/storage/storage-classes/#reclaim-policy) to `Retain` to prevent automatic deletion of the PV if the chart is uninstalled.
 
 ### Palworld Config
 
@@ -68,15 +69,17 @@ To configure the server, add the [environment variables](https://github.com/jamm
 ```yaml
 config:
   env:
-    TZ: UTC # Change this for logging and backup
+    TZ: UTC                              # Timezone used for time stamping server backups
     ALWAYS_UPDATE_ON_START: true
-    MAX_PLAYERS: 16
+    MAX_PLAYERS: 32
     MULTITHREAD_ENABLED: true
     COMMUNITY_SERVER: false
-    SERVER_NAME: "serverNameHere"
+    SERVER_NAME: "Default Palworld Server"
     SERVER_DESCRIPTION: ""
     BACKUP_ENABLED: true
-    BACKUP_CRON_EXPRESSION: 0 * * * *
+    BACKUP_CRON_EXPRESSION: "0 * * * *"  # Backup every hour
+    BACKUP_RETENTION_POLICY: true        # Cleanup old backups
+    BACKUP_RETENTION_AMOUNT_TO_KEEP: 168 # Retain backups for 7 days
     PUBLIC_IP: ""
     PUBLIC_PORT: 8211
   
