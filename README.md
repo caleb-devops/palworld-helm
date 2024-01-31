@@ -10,7 +10,7 @@ Helm's [documentation](https://helm.sh/docs) to get started.
 Once Helm has been set up correctly, add the repo as follows:
 
 ```sh
-helm repo add caleb-devops https://caleb-devops.github.io/helm-charts
+helm repo add caleb-devops https://caleb-devops.github.io/palworld-helm
 ```
 
 Chart documentation is available in the [palworld directory](./charts/palworld/).
