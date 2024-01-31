@@ -3,6 +3,19 @@ entries:
   palworld:
   - apiVersion: v2
     appVersion: v0.1.3.0
+    created: "2024-01-31T03:58:06.730527729Z"
+    description: Palworld Helm chart for Kubernetes
+    digest: 8de7db2a48ac99bb6e092b00c4dd66d0c42e98187ce8b3a320dcb4c5a1ad0e68
+    home: https://github.com/caleb-devops/palworld-helm
+    name: palworld
+    sources:
+    - https://github.com/caleb-devops/palworld-helm
+    - https://github.com/jammsen/docker-palworld-dedicated-server
+    urls:
+    - https://github.com/caleb-devops/palworld-helm/releases/download/palworld-0.1.1/palworld-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: v0.1.3.0
     created: "2024-01-31T01:10:55.459242824Z"
     description: Palworld Helm chart for Kubernetes
     digest: 79e62a795dbaa04aade70f12f3735aa4cad494bd95cd329f2052dadd749e005d
@@ -14,4 +27,4 @@ entries:
     urls:
     - https://github.com/caleb-devops/palworld-helm/releases/download/palworld-0.1.0/palworld-0.1.0.tgz
     version: 0.1.0
-generated: "2024-01-31T01:10:55.459252552Z"
+generated: "2024-01-31T03:58:06.730539852Z"
