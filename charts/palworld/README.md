@@ -69,17 +69,18 @@ To configure the server, add the [environment variables](https://github.com/jamm
 ```yaml
 config:
   env:
-    TZ: UTC                              # Timezone used for time stamping server backups
+    TZ: UTC                             # Timezone used for time stamping server backups
     ALWAYS_UPDATE_ON_START: true
-    MAX_PLAYERS: 32
     MULTITHREAD_ENABLED: true
     COMMUNITY_SERVER: false
-    SERVER_NAME: "Default Palworld Server"
-    SERVER_DESCRIPTION: ""
     BACKUP_ENABLED: true
     BACKUP_CRON_EXPRESSION: "0 * * * *"  # Backup every hour
     BACKUP_RETENTION_POLICY: true        # Cleanup old backups
     BACKUP_RETENTION_AMOUNT_TO_KEEP: 168 # Retain backups for 7 days
+    SERVER_SETTINGS_MODE: auto           # Apply game settings using environment variables
+    SERVER_NAME: "Default Palworld Server"
+    SERVER_DESCRIPTION: ""
+    MAX_PLAYERS: 32
     PUBLIC_IP: ""
     PUBLIC_PORT: 8211
   
