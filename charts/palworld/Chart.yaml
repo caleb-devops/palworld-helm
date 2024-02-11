@@ -1,6 +1,6 @@
 apiVersion: v2
 name: palworld
-version: 0.2.0
+version: 0.2.1
 description: Palworld Helm chart for Kubernetes
 home: https://github.com/caleb-devops/palworld-helm
 sources:
