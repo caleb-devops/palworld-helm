@@ -80,7 +80,7 @@ tolerations: []
 affinity: {}
 
 ## Environment variables used to configure Palworld
-## ref: https://github.com/jammsen/docker-palworld-dedicated-server/blob/master/README_ENV.md#environment-variables
+## ref: https://github.com/jammsen/docker-palworld-dedicated-server/blob/develop/docs/ENV_VARS.md
 ## 
 config:
   ## ConfigMap environment variables
@@ -110,3 +110,49 @@ config:
     env:
       SERVER_PASSWORD: "serverPasswordHere"
       ADMIN_PASSWORD: "adminPasswordHere"
+
+## Scrape metrics with palworld-exporter. Requires enabling RCON.
+## ref: https://github.com/palworldlol/palworld-exporter/tree/main
+##
+metrics:
+  enabled: false
+
+  image:
+    repository: docker.io/bostrt/palworld-exporter
+    pullPolicy: Always
+    tag: latest
+
+  service:
+    type: ClusterIP
+    port: 9877
+    # nodePort: ""
+    annotations: {}
+
+  serviceMonitor:
+    ## Create Prometheus Operator ServiceMonitor resource
+    enabled: false
+
+    ## The namespace where the ServiceMonitor will be created (defaults to Release Namespace).
+    namespace: ""
+
+    ## Scrape interval. If not set, the Prometheus default scrape interval is used.
+    interval: ""
+
+    ## RelabelConfigs to apply to samples before scraping
+    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
+    ##
+    relabelings: []
+
+    ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
+    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
+    ##
+    metricRelabelings: []
+
+  ## Additional environment variables used to configure palworld-exporter
+  ## ref: https://github.com/palworldlol/palworld-exporter/tree/main?tab=readme-ov-file#options
+  ##
+  env:
+    ## Path to your Palworld save directory
+    # SAVE_DIRECTORY: /palworld/Pal/Saved/SaveGames/0/XXXXX.../
+    LOG_LEVEL: INFO
+    IGNORE_LOGGING_IN: false

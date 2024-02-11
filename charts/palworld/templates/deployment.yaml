@@ -35,7 +35,7 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: palworld
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -64,9 +64,41 @@ spec:
           volumeMounts:
             - name: palworld
               mountPath: /palworld
-            {{- if .Values.persistence.subPath }}
+              {{- if .Values.persistence.subPath }}
               subPath: {{ .Values.persistence.subPath }}
+              {{- end }}
+        {{- if and .Values.rcon.enabled .Values.metrics.enabled }}
+        - name: metrics
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.metrics.image.repository }}:{{ .Values.metrics.image.tag }}"
+          imagePullPolicy: {{ .Values.metrics.image.pullPolicy }}
+          env:
+            - name: RCON_HOST
+              value: localhost
+            - name: RCON_PORT
+              value: {{ .Values.rcon.port | quote }}
+            - name: RCON_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "palworld.secret.name" . }}
+                  key: ADMIN_PASSWORD
+            {{- range $key, $value := .Values.metrics.env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
             {{- end }}
+          ports:
+            - name: metrics
+              containerPort: 9877
+              protocol: TCP
+          volumeMounts:
+            - name: palworld
+              mountPath: /palworld
+              {{- if .Values.persistence.subPath }}
+              subPath: {{ .Values.persistence.subPath }}
+              {{- end }}
+              readOnly: true
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

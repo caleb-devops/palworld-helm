@@ -1,0 +1,27 @@
+{{- if and .Values.rcon.enabled .Values.metrics.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "palworld.fullname" . }}-metrics
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "palworld.labels" . | nindent 4 }}
+    app.kubernetes.io/component: metrics
+  {{- with .Values.metrics.service.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  type: {{ .Values.metrics.service.type }}
+  ports:
+    - name: metrics
+      port: {{ .Values.metrics.service.port }}
+      protocol: TCP
+      targetPort: metrics
+    {{- $setNodePorts := (or (eq .Values.metrics.service.type "NodePort") (eq .Values.metrics.service.type "LoadBalancer")) }}
+    {{- if (and $setNodePorts (not (empty .Values.metrics.service.nodePort))) }}
+      nodePort: {{ .Values.metrics.service.nodePort }}
+    {{- end }}
+  selector:
+    {{- include "palworld.selectorLabels" . | nindent 4 }}
+{{- end }}
