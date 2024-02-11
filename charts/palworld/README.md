@@ -64,7 +64,7 @@ Data persistance is enabled by default using dynamic volume provisioning.
 
 ### Palworld Config
 
-To configure the server, add the [environment variables](https://github.com/jammsen/docker-palworld-dedicated-server/blob/master/README_ENV.md#environment-variables) to `config`:
+To configure the server, add the [environment variables](https://github.com/jammsen/docker-palworld-dedicated-server/blob/develop/docs/ENV_VARS.md) to `config`:
 
 ```yaml
 config:
@@ -90,3 +90,28 @@ config:
       SERVER_PASSWORD: "serverPasswordHere"
       ADMIN_PASSWORD: "adminPasswordHere"
 ```
+
+### Prometheus Exporter
+
+This chart supports exporting Prometheus metrics with [palworld-exporter](https://github.com/palworldlol/palworld-exporter). To enable metrics, set the following values:
+
+```yaml
+metrics:
+  enabled: true
+
+  serviceMonitor:
+    ## Create Prometheus Operator ServiceMonitor resource
+    enabled: true
+
+  ## Additional environment variables used to configure palworld-exporter
+  ## ref: https://github.com/palworldlol/palworld-exporter/tree/main?tab=readme-ov-file#options
+  ##
+  env:
+    ## Path to your Palworld save directory
+    SAVE_DIRECTORY: /palworld/Pal/Saved/SaveGames/0/XXXXX.../
+```
+
+> [!NOTE]
+> RCON must be enabled to use palworld-exporter.
+
+See the [palworld-exporter documentation](https://github.com/palworldlol/palworld-exporter) for additional details and an example Grafana dashboard.
