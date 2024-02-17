@@ -153,6 +153,6 @@ metrics:
   ##
   env:
     ## Path to your Palworld save directory
-    # SAVE_DIRECTORY: /palworld/Pal/Saved/SaveGames/0/XXXXX.../
+    SAVE_DIRECTORY: /palworld/Pal/Saved
     LOG_LEVEL: INFO
     IGNORE_LOGGING_IN: false
